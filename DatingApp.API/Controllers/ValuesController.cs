@@ -20,7 +20,7 @@ namespace DatingApp.API.Controllers
         {
             _context = context;
         }
-
+         [AllowAnonymous]
         //GET api/values 
         [HttpGet]
         //For handling concurrent request, better to use Async

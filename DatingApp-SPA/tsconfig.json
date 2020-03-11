@@ -11,9 +11,9 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "lib": [
+      "lib": [
       "es2018",
-      "dom"
+      "dom"      
     ]
   },
   "angularCompilerOptions": {

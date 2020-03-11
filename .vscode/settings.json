@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        "**/.vs": true,
+        "**/.vscode": true,
+        "**/bin": true,
+        "**/obj": true,
+        "**/settings.json": true
+    }
+}

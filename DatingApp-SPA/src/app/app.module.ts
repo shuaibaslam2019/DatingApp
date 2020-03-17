@@ -24,6 +24,11 @@ import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { AuthGuard } from './_guards/auth.guard';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+
 
 export function TokenGetter() {
    return localStorage.getItem('token');
@@ -46,7 +51,8 @@ export function TokenGetter() {
       MessagesComponent,
       MembersCardComponent,
       MemberDetailComponent,
-    ],
+      MemberEditComponent
+      ],
    imports: [
       BrowserModule,
       BrowserAnimationsModule,
@@ -67,11 +73,15 @@ export function TokenGetter() {
    ],
    providers: [
       AuthService,
+      AuthGuard,
       ErrorInterceptorProvider,
       AlertifyService,
       UserService,
       MemberDetailResolver,
-      MemberListResolver
+      MemberListResolver,
+      MemberEditResolver,
+      PreventUnsavedChanges
+
     //  { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
    bootstrap: [

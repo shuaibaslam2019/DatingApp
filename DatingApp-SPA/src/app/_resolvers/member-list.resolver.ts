@@ -13,12 +13,14 @@ export class MemberListResolver implements Resolve<User[]> {
     private router: Router,
     private alertify: AlertifyService
   ) {}
-  resolve(route: ActivatedRouteSnapshot): Observable<User[]> {  // resolve automatically subscribe to the method, we don't need to do
-      return this.userService.getUsers().pipe(catchError( error => {
+  resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
+    // resolve automatically subscribe to the method, we don't need to do
+    return this.userService.getUsers().pipe(
+      catchError(error => {
         this.alertify.error('Problem while retrieving data');
         this.router.navigate(['/home']);
-        return of (null);
-    })
+        return of(null);
+      })
     );
   }
 }

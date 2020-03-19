@@ -43,6 +43,7 @@ namespace DatingApp.API
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(DatingRepository).Assembly); // Which assembly to go and look in for our profile
             // IAuthRepository will be available for injection and sepcifically for controller IAuthRepository will be injecting
             // to our controller , and will get implementation from AuthRepository

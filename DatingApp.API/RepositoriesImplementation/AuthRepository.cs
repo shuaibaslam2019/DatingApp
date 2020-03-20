@@ -2,8 +2,6 @@ using System.Threading.Tasks;
 using DatingApp.API.Models;
 using DatingApp.API.Data;
 using DatingApp.API.Repositories;
-using System;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.RepositoriesImplementation
@@ -18,7 +16,7 @@ namespace DatingApp.API.RepositoriesImplementation
 
         public async Task<User> Login(string username, string password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
+            var user = await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(x => x.Username == username);
             if (user == null)
             {
                 return null;

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from '../../environments/environment';
+import { User } from '../_models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +12,26 @@ import { environment } from '../../environments/environment';
 export class AuthService {
   baseUrl = environment.apiUrl + 'auth/';
   jwtHelper = new JwtHelperService();
+  photoUrl = new BehaviorSubject<string>('../../assets/user.png'); // type <string>
+  currentPhotoUrl = this.photoUrl.asObservable(); // navbar photo line
   decodedToken: any;
+  currentUser: User;
   constructor(private http: HttpClient) {}
-
+  // navbar photo line
+  changeMemberPhoto(photoUrl: string) {
+    this.photoUrl.next(photoUrl);
+  }
   login(model: any) {
     return this.http.post(this.baseUrl + 'login', model).pipe(
       map((response: any) => {
         const user = response;
         if (user) {
           localStorage.setItem('token', user.token);
+          localStorage.setItem('user', JSON.stringify(user.user)); // this line goes to get photo url for navbar
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
-          console.log(this.decodedToken);
+          this.currentUser = user.user; // this line goes to get photo url for navbar
+         // console.log(this.decodedToken);
+          this.changeMemberPhoto(this.currentUser.photoUrl);  // for navbarphoto
         }
       })
     );

@@ -8,9 +8,11 @@ using DatingApp.API.DTOs;
 using DatingApp.API.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using DatingApp.API.Helpers;
 
 namespace DatingApp.API.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))] // keeping eye on acitivity of every loggedIn user
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]

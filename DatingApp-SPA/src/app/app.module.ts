@@ -40,6 +40,7 @@ import {
   FileSelectDirective
 } from 'ng2-file-upload';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimeagoModule } from 'ngx-timeago';
 
 export function TokenGetter() {
   return localStorage.getItem('token');
@@ -81,6 +82,7 @@ export function TokenGetter() {
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    TimeagoModule.forRoot(),
     NgxGalleryModule,
     FileUploadModule,
     ReactiveFormsModule,

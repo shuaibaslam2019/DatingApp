@@ -6,7 +6,7 @@ import {
 import { NgModule, Pipe } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
@@ -79,6 +79,8 @@ export function TokenGetter() {
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    PaginationModule.forRoot(),
+    ButtonsModule.forRoot(),
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
